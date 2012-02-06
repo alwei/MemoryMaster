@@ -1,8 +1,6 @@
 #include "MemoryMaster.h"
 #include <boost/progress.hpp>
 
-#include <list>
-
 // #define new new(__FILE__, __LINE__)
 
 class Base {

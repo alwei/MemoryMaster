@@ -2,7 +2,6 @@
 #define MEMORY_POOL_H_
 
 #include <memory>
-#include <set>
 #include <cstdlib>
 
 namespace MemoryPool {

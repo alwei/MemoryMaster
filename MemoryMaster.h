@@ -1,5 +1,5 @@
-#ifndef MEMORY_MASTER_H
-#define MEMORY_MASTER_H
+#ifndef _MEMORY_MASTER_H_
+#define _MEMORY_MASTER_H_
 
 #include <iostream>
 #include <cstdlib>

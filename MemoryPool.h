@@ -6,7 +6,7 @@
 
 namespace MemoryPool {
 
-static const int DEFAULT_EXPAND_SIZE = 100000;
+static const int DEFAULT_EXPAND_SIZE = 10000;
 
 template <class T, std::size_t Size = DEFAULT_EXPAND_SIZE>
 class MemoryPool {
@@ -102,7 +102,8 @@ public:
 
   void* poolAlloc(std::size_t size) {
     void* allocPtr = NULL;
-         if (size < 32) { allocPtr = mp32.alloc(size); }
+         if (size < 16) { allocPtr = mp16.alloc(size); }
+    else if (size < 32) { allocPtr = mp32.alloc(size); }
     else if (size < 64) { allocPtr = mp64.alloc(size); }
     else if (size < 128) { allocPtr = mp128.alloc(size); }
     else if (size < 256) { allocPtr = mp256.alloc(size); }
@@ -110,17 +111,19 @@ public:
   }
 
   void poolFree(void* freePtr, std::size_t size) {
-         if (size < 32) { mp32.free(freePtr); }
+         if (size < 16) { mp16.free(freePtr); }
+    else if (size < 32) { mp32.free(freePtr); }
     else if (size < 64) { mp64.free(freePtr); }
     else if (size < 128) { mp128.free(freePtr); }
     else if (size < 256) { mp256.free(freePtr); }
   }
 
 private:
+  MemoryPool<DataPool16> mp16;
   MemoryPool<DataPool32> mp32;
-  MemoryPool<DataPool64>  mp64;
-  MemoryPool<DataPool128>  mp128;
-  MemoryPool<DataPool256>  mp256;
+  MemoryPool<DataPool64> mp64;
+  MemoryPool<DataPool128> mp128;
+  MemoryPool<DataPool256> mp256;
 };
 
 template <class T, std::size_t Size>

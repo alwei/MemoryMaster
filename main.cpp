@@ -47,10 +47,10 @@ int main() {
   }
   {
     boost::progress_timer t;
-    MemoryPool::MakeMemoryPool<Test, 100000> mp;
+    MemoryPool::MakeMemoryPool<Test, 10000> mp;
     Test* ptr;
-    for (int j = 0; j < 1000; ++j) {
-      for (int i = 0; i < 100000; ++i) {
+    for (int j = 0; j < 10000; ++j) {
+      for (int i = 0; i < 10000; ++i) {
         ptr = mp.poolNew();
         mp.poolDelete(ptr);
       }

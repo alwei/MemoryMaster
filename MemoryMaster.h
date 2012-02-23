@@ -40,6 +40,7 @@ static inline void* memAlloc(std::size_t size, const char* name, int line) {
   allocPtr = std::malloc(size + sizeof(MemoryList));
   assert(allocPtr);
   MemoryList* current = static_cast<MemoryList*>(allocPtr);
+  current->next = NULL;
 
   if (!MemoryList::memory) {
     MemoryList::memory = current;

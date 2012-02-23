@@ -58,12 +58,12 @@ private:
 template <class T, std::size_t Size = DEFAULT_EXPAND_SIZE>
 class AppendMemoryPool {
 public:
-    void* operator new(std::size_t size) { return pool->alloc(size); }
-    void operator delete(void* deletePtr, std::size_t) { pool->free(deletePtr); }
-    void* operator new[](std::size_t size) { return pool->alloc(size); }
-    void operator delete[](void* deletePtr, std::size_t) { pool->free(deletePtr); }
+  void* operator new(std::size_t size) { return pool->alloc(size); }
+  void operator delete(void* deletePtr, std::size_t) { pool->free(deletePtr); }
+  void* operator new[](std::size_t size) { return pool->alloc(size); }
+  void operator delete[](void* deletePtr, std::size_t) { pool->free(deletePtr); }
 
-    static void init() { pool.reset(new MemoryPool<T, Size>); }
+  static void init() { pool.reset(new MemoryPool<T, Size>); }
 
 private:
   static std::auto_ptr<MemoryPool<T, Size> > pool;
